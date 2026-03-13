@@ -1,0 +1,13 @@
+jaffle_shop: # this needs to match the profile in your dbt_project.yml file
+    target: dev
+    outputs:
+        dev:
+            type: bigquery
+            method: service-account
+            keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
+            project: "{{ env_var('GOOGLE_PROJECT_ID') }}"
+            dataset: jaffle_shop
+            threads: 1
+            timeout_seconds: 300
+            location: US
+            priority: interactive
